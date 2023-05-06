@@ -12,10 +12,10 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
 }
 
+// create variable to store computer choice
+let computerChoice;
 /* create a function that randomly returns the computer's choice of rock, paper, or scissors */
 function getComputerChoice() {
-  // create variable to store computer choice
-  let computerChoice;
   // select a random number, which determines rock(1), paper(2), or scissors(3). store it in computerChoice
   computerChoice = getRandomIntInclusive(1, 3);
   // if the number is 1, computerChoice is rock
@@ -38,13 +38,12 @@ function getComputerChoice() {
   }
 }
 // get the computer's choice
-getComputerChoice();
 
 /* GET THE PLAYER'S CHOICE */
+// create a variable for the player's choice
+let playerChoice;
 // ask the player for their choice and store in variable
 function getPlayerChoice() {
-  // create a variable for the player's choice
-  let playerChoice;
   // ask the player for their choice, which determines rock(1), paper(2), or scissors(3). store it in playerChoice
   playerChoice = prompt("Rock, paper, or scissors?");
   // if the number is 1, computerChoice is rock
@@ -66,7 +65,6 @@ function getPlayerChoice() {
     return playerChoice;
   }
 }
-getPlayerChoice();
 
 /* PLAY A SINGLE ROUND OF ROCK, PAPER, SCISSORS */
 
@@ -79,45 +77,70 @@ function playGame() {
   // tie message
   let tieMessage = "it's a tie...play again!";
 
-  // set condition for rock vs rock
+  getPlayerChoice();
+  getComputerChoice();
+
+  // set condition for computer rock vs player rock
   if (computerChoice == rock && playerChoice == rock) {
     // tell the user to play the game again
     console.log(tieMessage);
     // call the function to play the game again
     playGame();
   }
-  // set condition for rock vs paper
+  // set condition for computer rock vs player paper
   else if (computerChoice == rock && playerChoice == paper) {
     // log to the console who won
     console.log(victoryMessage);
     // ask the player if they'd like to play again
-    playAgain();
   }
-  // set condition for rock vs scissors
+  // set condition for computer rock vs player scissors
   else if (computerChoice == rock && playerChoice == scissors) {
     console.log(losingMessage);
-
-    // ask the player if they'd like to play again
-
-    // if yes, call function to play again
-
-    //if no, end
+  }
+  // set condition for computer rock vs player scissors
+  else if (computerChoice == paper && playerChoice == rock) {
+    console.log(losingMessage);
+  }
+  // set condition for computer paper vs player paper
+  else if (computerChoice == paper && playerChoice == paper) {
+    console.log(tieMessage);
+    playGame();
   }
 
-  // set condition for paper vs scissors
+  // set condition for computer paper vs player scissors
+  else if (computerChoice == paper && playerChoice == scissors) {
+    console.log(victoryMessage);
+  }
 
-  // set condition for paper vs paper
+  // set condition for computer scissors vs player rock
+  else if (computerChoice == scissors && playerChoice == rock) {
+    console.log(victoryMessage);
+  }
+  // set condition for computer scissors vs player paper
+  else if (computerChoice == scissors && playerChoice == paper) {
+    console.log(losingMessage);
+  }
 
   // set condition for scissors vs scissors
+  else if (computerChoice == scissors && playerChoice == scissors) {
+    console.log(tieMessage);
+    playGame();
+  }
 }
 
 // ask the player if they'd like to play again
 function playAgain() {
   let playAgainAnswer = confirm("Would you like to play again?");
 
-  if (playAgain == true) {
+  if (playAgainAnswer == true) {
     playGame();
   } else {
     console.log("thanks for playing!");
+  }
+}
+
+function playFiveTimes() {
+  for (i = 0; i < 5; i++) {
+    playGame();
   }
 }
