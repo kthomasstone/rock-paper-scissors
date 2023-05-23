@@ -144,3 +144,9 @@ function playFiveTimes() {
     playGame();
   }
 }
+
+// store buttons in variable list and call function on click
+let playerSelection = document.querySelectorAll(".playerSelection");
+playerSelection.forEach((button) => {
+  button.addEventListener("click", playGame);
+});
