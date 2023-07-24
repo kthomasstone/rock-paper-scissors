@@ -174,6 +174,7 @@ function updatePlayerScore() {
   playerScore += 1;
 
   playerScoreElement.textContent = playerScore;
+  checkFiveWins(playerScore, computerScore);
 }
 
 function updateComputerScore() {
@@ -182,4 +183,15 @@ function updateComputerScore() {
   computerScore += 1;
 
   computerScoreElement.textContent = computerScore;
+  checkFiveWins(playerScore, computerScore);
+}
+
+// CHECK FOR WINNER
+
+function checkFiveWins(playerScore, computerScore) {
+  if (playerScore == 5) {
+    alert("You win!");
+  } else if (computerScore == 5) {
+    alert("You lose...");
+  }
 }
